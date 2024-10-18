@@ -1,5 +1,6 @@
 import express from 'express'
-
+import morgan from 'morgan';
+import cors from 'cors';
 //1- configurar puerto
 const app = express ();
 
@@ -11,6 +12,11 @@ app.listen(app.get('port'), ()=>{
 
 
 //2- configurar middlewares
+app.use(cors()); //permite conexiones remotas
+app.use(morgan('dev')); //nos da informacion extra en la terminal
+app.use(express.json());// interpretar los datos en formato json de la solicitud
+app.use(express.urlencoded({extended:true}))
+
 
 //3- configurar rutas
 
